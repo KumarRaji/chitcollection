@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Group {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  members     Member[]
+
+  @@map("groups")
+}
+
+model Member {
+  id            Int          @id @default(autoincrement())
+  memberNumber  String       @unique @map("member_number")
+  name          String
+  phone         String?
+  aadhaar       String?
+  address       String?
+  photoUrl      String?      @map("photo_url")
+  chitAmount    Decimal      @map("chit_amount") @db.Decimal(10, 2)
+  startDate     DateTime     @map("start_date") @db.Date
+  dueDate       DateTime     @map("due_date") @db.Date
+  groupId       Int?         @map("group_id")
+  group         Group?       @relation(fields: [groupId], references: [id])
+  createdAt     DateTime     @default(now()) @map("created_at")
+  collections   Collection[]
+
+  @@map("members")
+}
+
+model Collection {
+  id             Int      @id @default(autoincrement())
+  memberId       Int      @map("member_id")
+  collectionDate DateTime @map("collection_date") @db.Date
+  dueDate        DateTime @map("due_date") @db.Date
+  amount         Decimal  @db.Decimal(10, 2)
+  status         String   @default("paid")
+  notes          String?
+  createdAt      DateTime @default(now()) @map("created_at")
+  member         Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@map("collections")
+}
