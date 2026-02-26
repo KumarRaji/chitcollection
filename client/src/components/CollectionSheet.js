@@ -62,7 +62,12 @@ function CollectionSheet({ member }) {
   const handleWhatsAppShare = async () => {
     try {
       const element = document.querySelector('.collection-sheet');
-      const canvas = await html2canvas(element, { scale: 2 });
+      const canvas = await html2canvas(element, { 
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        logging: false
+      });
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const imgWidth = 210;
@@ -134,9 +139,9 @@ function CollectionSheet({ member }) {
           {member.photoUrl && (
             <div className="member-photo">
               <div className="photo-logo">
-                <img src="/logo.png" alt="Logo" className="logo-image" />
+                <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Logo" className="logo-image" crossOrigin="anonymous" />
               </div>
-              <img src={`http://localhost:5000${member.photoUrl}`} alt={member.name} />
+              <img src={`http://localhost:5000${member.photoUrl}`} alt={member.name} crossOrigin="anonymous" />
             </div>
           )}
         </div>
@@ -147,7 +152,7 @@ function CollectionSheet({ member }) {
           <h3>Collection Records</h3>
           <div className="action-buttons">
             <button onClick={handleWhatsAppShare} className="btn-whatsapp">
-              📱 Print with WhatsApp
+              📱 Share with WhatsApp
             </button>
             <button onClick={handlePrint} className="btn-print">
               🖨️ Print
