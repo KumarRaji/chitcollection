@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import './CollectionSheet.css';
 
 function CollectionSheet({ member }) {
@@ -45,6 +47,47 @@ function CollectionSheet({ member }) {
     }
   };
 
+  const splitAddress = (address) => {
+    if (!address) return ['', ''];
+    const maxLength = 30;
+    if (address.length <= maxLength) return [address, ''];
+    const splitIndex = address.lastIndexOf(' ', maxLength);
+    return splitIndex > 0 
+      ? [address.substring(0, splitIndex), address.substring(splitIndex + 1)]
+      : [address.substring(0, maxLength), address.substring(maxLength)];
+  };
+
+  const [addressLine1, addressLine2] = splitAddress(member.address);
+
+  const handleWhatsAppShare = async () => {
+    try {
+      const element = document.querySelector('.collection-sheet');
+      const canvas = await html2canvas(element, { scale: 2 });
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgWidth = 210;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      
+      const pdfBlob = pdf.output('blob');
+      const file = new File([pdfBlob], `${member.name}_collection_sheet.pdf`, { type: 'application/pdf' });
+      
+      if (navigator.share && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: `Collection Sheet - ${member.name}`,
+          text: `Amount Paid for ${member.name}`
+        });
+      } else {
+        pdf.save(`${member.name}_collection_sheet.pdf`);
+        window.open(`https://wa.me/91${member.phone}`, '_blank');
+      }
+    } catch (err) {
+      console.error('Error sharing:', err);
+      alert('Error generating PDF');
+    }
+  };
+
   return (
     <div className="collection-sheet">
       <div className="sheet-header">
@@ -56,22 +99,35 @@ function CollectionSheet({ member }) {
             <span className="value">{member.memberNumber}</span>
             
             <span className="label">தொலைபேசி எண்:</span>
-            <span className="value">{member.phone}</span>
+            <span className="value">
+              {member.phone}
+              {member.phone && (
+                <a 
+                  href={`https://wa.me/91${member.phone}?text=Amount%20paid%20for%20${encodeURIComponent(member.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="whatsapp-icon"
+                  title="Send via WhatsApp"
+                >
+                  📱
+                </a>
+              )}
+            </span>
             <span className="label">தொகை:</span>
             <span className="value">₹{member.chitAmount}</span>
             
             <span className="label">தந்தை பெயர்:</span>
-            <span className="value"></span>
+            <span className="value">{member.fatherName}</span>
             <span className="label">ஆரம்ப தேதி:</span>
             <span className="value">{new Date(member.startDate).toLocaleDateString()}</span>
             
             <span className="label">விலாசம்:</span>
-            <span className="value">{member.address}</span>
+            <span className="value">{addressLine1}</span>
             <span className="label">ஆதார்:</span>
             <span className="value">{member.aadhaar}</span>
             
             <span className="label"></span>
-            <span className="value address-extra"></span>
+            <span className="value address-extra">{addressLine2}</span>
             <span className="label">முடிவு தேதி:</span>
             <span className="value">{new Date(member.dueDate).toLocaleDateString()}</span>
           </div>
@@ -90,6 +146,9 @@ function CollectionSheet({ member }) {
         <div className="section-header">
           <h3>Collection Records</h3>
           <div className="action-buttons">
+            <button onClick={handleWhatsAppShare} className="btn-whatsapp">
+              📱 Print with WhatsApp
+            </button>
             <button onClick={handlePrint} className="btn-print">
               🖨️ Print
             </button>

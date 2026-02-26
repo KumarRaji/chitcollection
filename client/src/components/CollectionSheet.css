@@ -33,10 +33,32 @@
 .member-info-grid .value {
   border-bottom: 1px dotted #666;
   padding-bottom: 2px;
+  min-height: 20px;
 }
 
 .member-info-grid .value.address-extra {
   border-bottom: 1px dotted #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  min-height: 20px;
+}
+
+.whatsapp-icon {
+  margin-left: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.whatsapp-icon:hover {
+  opacity: 0.7;
+}
+
+@media print {
+  .whatsapp-icon {
+    display: none !important;
+  }
 }
 
 .chit-amount-section {
@@ -124,9 +146,24 @@
   background: #229954;
 }
 
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn-whatsapp:hover {
+  background: #20BA5A;
+}
+
 @media print {
   .btn-primary,
   .btn-print,
+  .btn-whatsapp,
   .add-collection-form,
   .section-header h3 {
     display: none !important;
