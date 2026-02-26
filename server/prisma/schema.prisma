@@ -21,6 +21,7 @@ model Member {
   id            Int          @id @default(autoincrement())
   memberNumber  String       @unique @map("member_number")
   name          String
+  fatherName    String?      @map("father_name")
   phone         String?
   aadhaar       String?
   address       String?

@@ -78,13 +78,14 @@ app.get('/api/members/:id', async (req, res) => {
 
 app.post('/api/members', upload.single('photo'), async (req, res) => {
   try {
-    const { member_number, name, phone, aadhaar, address, chit_amount, start_date, due_date, group_id } = req.body;
+    const { member_number, name, father_name, phone, aadhaar, address, chit_amount, start_date, due_date, group_id } = req.body;
     const photo_url = req.file ? `/uploads/${req.file.filename}` : null;
     
     const member = await prisma.member.create({
       data: {
         memberNumber: member_number,
         name,
+        fatherName: father_name,
         phone,
         aadhaar,
         address,

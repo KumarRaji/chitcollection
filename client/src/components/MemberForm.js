@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './MemberForm.css';
 
-function MemberForm({ onSuccess, selectedGroup }) {
+function MemberForm({ onSuccess, selectedGroup, onCancel }) {
   const [groups, setGroups] = useState([]);
   const [formData, setFormData] = useState({
     member_number: '',
     name: '',
+    father_name: '',
     phone: '',
     aadhaar: '',
     address: '',
@@ -47,6 +48,7 @@ function MemberForm({ onSuccess, selectedGroup }) {
       setFormData({
         member_number: '',
         name: '',
+        father_name: '',
         phone: '',
         aadhaar: '',
         address: '',
@@ -63,32 +65,40 @@ function MemberForm({ onSuccess, selectedGroup }) {
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit} className="member-form">
-        <h2>Add New Member</h2>
+    <div className="modal-overlay" onClick={onCancel}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onCancel}>&times;</button>
+        <form onSubmit={handleSubmit} className="member-form">
+        <h2>புதிய உறுப்பினரை சேர்க்கவும்</h2>
         <input
           type="text"
-          placeholder="Member Number"
+          placeholder="எண்"
           value={formData.member_number}
           onChange={(e) => setFormData({...formData, member_number: e.target.value})}
           required
         />
         <input
           type="text"
-          placeholder="Name"
+          placeholder="பெயர்"
           value={formData.name}
           onChange={(e) => setFormData({...formData, name: e.target.value})}
           required
         />
         <input
           type="text"
-          placeholder="Phone"
+          placeholder="தந்தை பெயர்"
+          value={formData.father_name}
+          onChange={(e) => setFormData({...formData, father_name: e.target.value})}
+        />
+        <input
+          type="text"
+          placeholder="தொலைபேசி எண்"
           value={formData.phone}
           onChange={(e) => setFormData({...formData, phone: e.target.value})}
         />
         <input
           type="text"
-          placeholder="Aadhaar Number"
+          placeholder="ஆதார் எண்"
           value={formData.aadhaar}
           onChange={(e) => setFormData({...formData, aadhaar: e.target.value})}
         />
@@ -97,33 +107,33 @@ function MemberForm({ onSuccess, selectedGroup }) {
           onChange={(e) => setFormData({...formData, group_id: e.target.value})}
           required
         >
-          <option value="">Select Group</option>
+          <option value="">குழுவை தேர்ந்தெடுக்கவும்</option>
           {groups.map(group => (
             <option key={group.id} value={group.id}>{group.name}</option>
           ))}
         </select>
         <textarea
-          placeholder="Address"
+          placeholder="விலாசம்"
           value={formData.address}
           onChange={(e) => setFormData({...formData, address: e.target.value})}
         />
         <input
           type="number"
-          placeholder="Chit Amount"
+          placeholder="தொகை"
           value={formData.chit_amount}
           onChange={(e) => setFormData({...formData, chit_amount: e.target.value})}
           required
         />
         <input
           type="date"
-          placeholder="Start Date"
+          placeholder="ஆரம்ப தேதி"
           value={formData.start_date}
           onChange={(e) => setFormData({...formData, start_date: e.target.value})}
           required
         />
         <input
           type="date"
-          placeholder="Due Date"
+          placeholder="முடிவு தேதி"
           value={formData.due_date}
           onChange={(e) => setFormData({...formData, due_date: e.target.value})}
           required
@@ -133,8 +143,9 @@ function MemberForm({ onSuccess, selectedGroup }) {
           accept="image/*"
           onChange={(e) => setPhoto(e.target.files[0])}
         />
-        <button type="submit" className="btn-primary">Create Member</button>
-      </form>
+        <button type="submit" className="btn-primary">உறுப்பினரை உருவாக்கவும்</button>
+        </form>
+      </div>
     </div>
   );
 }

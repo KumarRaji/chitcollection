@@ -12,6 +12,10 @@ function CollectionSheet({ member }) {
     notes: ''
   });
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   const fetchCollections = useCallback(async () => {
     try {
       const res = await axios.get(`/api/collections/${member.id}`);
@@ -44,29 +48,55 @@ function CollectionSheet({ member }) {
   return (
     <div className="collection-sheet">
       <div className="sheet-header">
-        <div className="member-info">
-          <h2>{member.name}</h2>
-          <p>Member No: {member.memberNumber}</p>
-          <p>Phone: {member.phone}</p>
-          <p>Aadhaar: {member.aadhaar}</p>
-          <p>Address: {member.address}</p>
-          <p>Chit Amount: ₹{member.chitAmount}</p>
-          <p>Start Date: {new Date(member.startDate).toLocaleDateString()}</p>
-          <p>Due Date: {new Date(member.dueDate).toLocaleDateString()}</p>
-        </div>
-        {member.photoUrl && (
-          <div className="member-photo">
-            <img src={`http://localhost:5000${member.photoUrl}`} alt={member.name} />
+        <div className="header-top">
+          <div className="member-info-grid">
+            <span className="label">பெயர்:</span>
+            <span className="value">{member.name}</span>
+            <span className="label">எண்:</span>
+            <span className="value">{member.memberNumber}</span>
+            
+            <span className="label">தொலைபேசி எண்:</span>
+            <span className="value">{member.phone}</span>
+            <span className="label">தொகை:</span>
+            <span className="value">₹{member.chitAmount}</span>
+            
+            <span className="label">தந்தை பெயர்:</span>
+            <span className="value"></span>
+            <span className="label">ஆரம்ப தேதி:</span>
+            <span className="value">{new Date(member.startDate).toLocaleDateString()}</span>
+            
+            <span className="label">விலாசம்:</span>
+            <span className="value">{member.address}</span>
+            <span className="label">ஆதார்:</span>
+            <span className="value">{member.aadhaar}</span>
+            
+            <span className="label"></span>
+            <span className="value address-extra"></span>
+            <span className="label">முடிவு தேதி:</span>
+            <span className="value">{new Date(member.dueDate).toLocaleDateString()}</span>
           </div>
-        )}
+          {member.photoUrl && (
+            <div className="member-photo">
+              <div className="photo-logo">
+                <img src="/logo.png" alt="Logo" className="logo-image" />
+              </div>
+              <img src={`http://localhost:5000${member.photoUrl}`} alt={member.name} />
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="collections-section">
         <div className="section-header">
           <h3>Collection Records</h3>
-          <button onClick={() => setShowAddForm(!showAddForm)} className="btn-primary">
-            {showAddForm ? 'Cancel' : 'Add Collection'}
-          </button>
+          <div className="action-buttons">
+            <button onClick={handlePrint} className="btn-print">
+              🖨️ Print
+            </button>
+            <button onClick={() => setShowAddForm(!showAddForm)} className="btn-primary">
+              {showAddForm ? 'Cancel' : 'Add Collection'}
+            </button>
+          </div>
         </div>
 
         {showAddForm && (
@@ -103,11 +133,11 @@ function CollectionSheet({ member }) {
         <table className="collection-table">
           <thead>
             <tr>
-              <th>No</th>
-              <th>Collection Date</th>
-              <th>Due Date</th>
-              <th>Amount</th>
-              <th>Notes</th>
+              <th>எண்</th>
+              <th>தவணை தேதி</th>
+              <th>வரவு தேதி</th>
+              <th>வரவு</th>
+              <th>பாக்கி</th>
             </tr>
           </thead>
           <tbody>
@@ -120,6 +150,29 @@ function CollectionSheet({ member }) {
                 <td>{col.notes}</td>
               </tr>
             ))}
+            {Array.from({ length: Math.max(0, 12 - collections.length) }).map((_, idx) => (
+              <tr key={`empty-${idx}`}>
+                <td>{collections.length + idx + 1}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            ))}
+            <tr className="extra-row">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr className="extra-row">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </div>

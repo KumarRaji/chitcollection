@@ -68,8 +68,8 @@ function App() {
         </div>
       </header>
 
-      {showGroupForm && <GroupForm onSuccess={handleGroupCreated} />}
-      {showMemberForm && <MemberForm onSuccess={handleMemberCreated} selectedGroup={selectedGroup} />}
+      {showGroupForm && <GroupForm onSuccess={handleGroupCreated} onCancel={() => setShowGroupForm(false)} />}
+      {showMemberForm && <MemberForm onSuccess={handleMemberCreated} selectedGroup={selectedGroup} onCancel={() => setShowMemberForm(false)} />}
 
       <div className="content">
         <div className="sidebar">
