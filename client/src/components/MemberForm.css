@@ -78,14 +78,14 @@
   resize: vertical;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .modal-overlay {
-    padding: 10px;
+    padding: 15px;
   }
 
   .modal-content {
     width: 100%;
-    padding: 20px 15px;
+    padding: 25px 18px;
     max-height: 85vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -97,35 +97,40 @@
   }
 
   .member-form h2 {
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 19px;
+    margin-bottom: 8px;
   }
 
   .member-form input,
   .member-form textarea,
   .member-form select {
     font-size: 16px;
-    padding: 12px;
+    padding: 14px;
+    min-height: 48px;
   }
 
   .member-form button {
-    padding: 14px;
+    padding: 16px;
     font-size: 16px;
-    touch-action: manipulation;
+    min-height: 52px;
   }
 
   .modal-close {
-    font-size: 24px;
-    width: 36px;
-    height: 36px;
-    top: 8px;
-    right: 8px;
+    font-size: 26px;
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    right: 10px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+
   .modal-content {
-    padding: 15px 10px;
+    padding: 20px 15px;
     max-height: 90vh;
   }
 
@@ -134,19 +139,24 @@
   }
 
   .member-form h2 {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .member-form input,
   .member-form textarea,
   .member-form select {
-    font-size: 16px;
-    padding: 10px;
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .member-form button {
+    padding: 14px;
+    font-size: 15px;
   }
 
   .modal-close {
-    font-size: 22px;
-    width: 32px;
-    height: 32px;
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
   }
 }

@@ -62,37 +62,50 @@
   font-size: 14px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .login-box {
+    padding: 35px 25px;
+    max-width: 450px;
+  }
+  
+  .login-box h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+  
+  .login-box input {
+    padding: 14px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+  
+  .btn-login {
+    padding: 14px;
+    font-size: 16px;
+    min-height: 52px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 15px;
+  }
+  
   .login-box {
     padding: 30px 20px;
   }
   
   .login-box h2 {
     font-size: 20px;
-    margin-bottom: 20px;
   }
   
   .login-box input {
-    padding: 10px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 15px;
   }
   
   .btn-login {
-    padding: 10px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-container {
-    padding: 15px;
-  }
-  
-  .login-box {
-    padding: 25px 15px;
-  }
-  
-  .login-box h2 {
-    font-size: 18px;
+    padding: 12px;
+    font-size: 15px;
   }
 }

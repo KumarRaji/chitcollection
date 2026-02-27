@@ -367,10 +367,9 @@
   padding: 25px 12px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .collection-sheet {
-    padding: 12px;
-    overflow-x: auto;
+    padding: 15px;
   }
 
   .sheet-header {
@@ -379,37 +378,37 @@
 
   .header-top {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
   }
 
   .member-info-grid {
     grid-template-columns: auto 1fr;
-    gap: 8px 10px;
-    font-size: 13px;
+    gap: 8px 12px;
+    font-size: 14px;
   }
 
   .member-photo {
-    margin-top: 15px;
+    margin-top: 12px;
     width: 100%;
     align-items: center;
   }
 
   .photo-logo,
   .member-photo img {
-    width: 100px;
+    width: 110px;
   }
 
   .member-photo img {
-    height: 125px;
+    height: 135px;
   }
 
   .chit-amount-section {
-    padding: 10px 12px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 15px;
   }
 
   .bp-value {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .section-header {
@@ -420,8 +419,88 @@
   }
 
   .action-buttons {
-    flex-direction: column;
+    flex-direction: row;
     gap: 8px;
+  }
+
+  .btn-primary,
+  .btn-print,
+  .btn-whatsapp {
+    flex: 1;
+    padding: 14px;
+    font-size: 14px;
+    min-height: 48px;
+  }
+
+  .add-collection-form {
+    flex-direction: column;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .add-collection-form input,
+  .add-collection-form button {
+    padding: 14px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  .collection-table {
+    font-size: 13px;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .collection-table th,
+  .collection-table td {
+    padding: 10px 8px;
+    white-space: nowrap;
+  }
+
+  .collection-table tbody tr.extra-row td {
+    padding: 22px 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .collection-sheet {
+    padding: 12px;
+  }
+
+  .sheet-header {
+    padding: 10px;
+  }
+
+  .member-info-grid {
+    font-size: 13px;
+    gap: 7px 10px;
+  }
+
+  .photo-logo,
+  .member-photo img {
+    width: 90px;
+  }
+
+  .member-photo img {
+    height: 110px;
+  }
+
+  .chit-amount-section {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .bp-value {
+    font-size: 16px;
+  }
+
+  .section-header {
+    padding: 10px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
   }
 
   .btn-primary,
@@ -430,96 +509,30 @@
     width: 100%;
     padding: 12px;
     font-size: 14px;
-    touch-action: manipulation;
   }
 
   .add-collection-form {
-    flex-direction: column;
-    padding: 12px;
+    padding: 10px;
     gap: 8px;
   }
 
-  .add-collection-form input {
+  .add-collection-form input,
+  .add-collection-form button {
     padding: 12px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .collection-table {
     font-size: 12px;
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   .collection-table th,
   .collection-table td {
     padding: 8px 6px;
-    white-space: nowrap;
   }
 
   .collection-table tbody tr.extra-row td {
-    padding: 20px 6px;
-  }
-}
-
-@media (max-width: 480px) {
-  .collection-sheet {
-    padding: 10px;
-  }
-
-  .sheet-header {
-    padding: 10px;
-  }
-
-  .member-info-grid {
-    font-size: 12px;
-    gap: 6px 8px;
-  }
-
-  .photo-logo,
-  .member-photo img {
-    width: 80px;
-  }
-
-  .member-photo img {
-    height: 100px;
-  }
-
-  .chit-amount-section {
-    padding: 8px 10px;
-    font-size: 13px;
-  }
-
-  .bp-value {
-    font-size: 15px;
-  }
-
-  .section-header {
-    padding: 10px;
-  }
-
-  .btn-primary,
-  .btn-print,
-  .btn-whatsapp {
-    padding: 10px;
-    font-size: 13px;
-  }
-
-  .add-collection-form {
-    padding: 10px;
-  }
-
-  .add-collection-form input {
-    padding: 10px;
-  }
-
-  .collection-table {
-    font-size: 11px;
-  }
-
-  .collection-table th,
-  .collection-table td {
-    padding: 6px 4px;
+    padding: 18px 6px;
   }
 
   .whatsapp-icon {

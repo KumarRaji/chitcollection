@@ -1,14 +1,22 @@
 .app {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
   background: #2c3e50;
   color: white;
-  padding: 20px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.header h1 {
+  font-size: 22px;
+  margin: 0;
 }
 
 .btn-primary {
@@ -19,6 +27,8 @@
   cursor: pointer;
   border-radius: 4px;
   font-size: 14px;
+  white-space: nowrap;
+  min-height: 44px;
 }
 
 .btn-primary:hover {
@@ -27,7 +37,8 @@
 
 .content {
   display: flex;
-  height: calc(100vh - 80px);
+  flex: 1;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -36,19 +47,16 @@
   border-right: 1px solid #ddd;
   overflow-y: auto;
   padding: 20px;
+  flex-shrink: 0;
 }
 
-.member-item {
-  padding: 15px;
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.sidebar h2,
+.sidebar h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
+.member-item,
 .group-item {
   padding: 15px;
   border: 1px solid #ddd;
@@ -58,6 +66,11 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  min-height: 44px;
+  transition: background 0.2s;
+}
+
+.group-item {
   background: #f0f8ff;
 }
 
@@ -75,17 +88,72 @@
 .main-content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 20px;
 }
 
 .placeholder {
   text-align: center;
   color: #999;
-  padding: 50px;
+  padding: 50px 20px;
   font-size: 18px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .header {
+    padding: 12px 15px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .header > div {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .header > div button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    max-height: 45vh;
+    padding: 15px;
+  }
+
+  .sidebar h2,
+  .sidebar h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .member-item,
+  .group-item {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .placeholder {
+    font-size: 16px;
+    padding: 40px 15px;
+  }
+}
+
+@media (max-width: 600px) {
   .header {
     flex-direction: column;
     gap: 10px;
@@ -93,76 +161,44 @@
   }
 
   .header h1 {
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
   }
 
   .header > div {
-    display: flex;
-    gap: 8px;
     width: 100%;
-    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .header > div button {
     flex: 1;
-    min-width: calc(50% - 4px);
-    margin-right: 0 !important;
+    min-width: 0;
     padding: 12px 8px;
-    font-size: 13px;
-  }
-
-  .content {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-    max-height: 40vh;
-    padding: 12px;
-  }
-
-  .main-content {
-    padding: 12px;
-  }
-
-  .member-item,
-  .group-item {
-    padding: 12px;
-    font-size: 14px;
-    touch-action: manipulation;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
-    padding: 10px;
-  }
-
-  .header h1 {
-    font-size: 16px;
-  }
-
-  .header > div button {
     font-size: 12px;
-    padding: 10px 6px;
   }
 
   .sidebar {
-    padding: 10px;
-    max-height: 35vh;
+    padding: 12px;
+    max-height: 40vh;
+  }
+
+  .sidebar h2,
+  .sidebar h3 {
+    font-size: 15px;
   }
 
   .main-content {
-    padding: 10px;
+    padding: 12px;
   }
 
   .member-item,
   .group-item {
     padding: 10px;
     font-size: 13px;
+  }
+
+  .placeholder {
+    font-size: 15px;
+    padding: 30px 12px;
   }
 }
