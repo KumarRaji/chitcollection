@@ -24,20 +24,20 @@ function GroupForm({ onSuccess, onCancel }) {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onCancel}>&times;</button>
         <form onSubmit={handleSubmit} className="member-form">
-          <h2>Add New Group</h2>
+          <h2>புதிய குழு சேர்க்கவும்</h2>
           <input
             type="text"
-            placeholder="Group Name"
+            placeholder="குழு பெயர்"
             value={formData.name}
             onChange={(e) => setFormData({...formData, name: e.target.value})}
             required
           />
           <textarea
-            placeholder="Description"
+            placeholder="விளக்கம்"
             value={formData.description}
             onChange={(e) => setFormData({...formData, description: e.target.value})}
           />
-          <button type="submit" className="btn-primary">Create Group</button>
+          <button type="submit" className="btn-primary">குழுவை உருவாக்கு</button>
         </form>
       </div>
     </div>

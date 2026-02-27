@@ -21,6 +21,21 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+// Login
+app.post('/api/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await prisma.user.findUnique({ where: { username } });
+    if (user && user.password === password) {
+      res.json({ success: true });
+    } else {
+      res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Groups
 app.get('/api/groups', async (req, res) => {
   try {
