@@ -89,22 +89,27 @@
   .header {
     flex-direction: column;
     gap: 10px;
-    padding: 15px;
+    padding: 12px;
   }
 
   .header h1 {
-    font-size: 20px;
+    font-size: 18px;
+    text-align: center;
   }
 
   .header > div {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
+    flex-wrap: wrap;
   }
 
   .header > div button {
     flex: 1;
+    min-width: calc(50% - 4px);
     margin-right: 0 !important;
+    padding: 12px 8px;
+    font-size: 13px;
   }
 
   .content {
@@ -116,16 +121,48 @@
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #ddd;
-    max-height: 300px;
+    max-height: 40vh;
+    padding: 12px;
   }
 
   .main-content {
-    padding: 15px;
+    padding: 12px;
   }
 
   .member-item,
   .group-item {
     padding: 12px;
     font-size: 14px;
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+  }
+
+  .header > div button {
+    font-size: 12px;
+    padding: 10px 6px;
+  }
+
+  .sidebar {
+    padding: 10px;
+    max-height: 35vh;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .member-item,
+  .group-item {
+    padding: 10px;
+    font-size: 13px;
   }
 }

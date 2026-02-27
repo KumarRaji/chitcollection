@@ -247,22 +247,29 @@
 
 @media (max-width: 768px) {
   .collection-sheet {
-    padding: 15px;
+    padding: 12px;
+    overflow-x: auto;
+  }
+
+  .sheet-header {
+    padding: 12px;
   }
 
   .header-top {
     flex-direction: column;
+    gap: 15px;
   }
 
   .member-info-grid {
     grid-template-columns: auto 1fr;
     gap: 8px 10px;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .member-photo {
     margin-top: 15px;
     width: 100%;
+    align-items: center;
   }
 
   .photo-logo,
@@ -274,32 +281,126 @@
     height: 125px;
   }
 
+  .chit-amount-section {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .bp-value {
+    font-size: 16px;
+  }
+
   .section-header {
     flex-direction: column;
     gap: 10px;
     align-items: stretch;
+    padding: 12px;
   }
 
   .action-buttons {
     flex-direction: column;
+    gap: 8px;
   }
 
   .btn-primary,
   .btn-print,
   .btn-whatsapp {
     width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    touch-action: manipulation;
   }
 
   .add-collection-form {
     flex-direction: column;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .add-collection-form input {
+    padding: 12px;
+    font-size: 16px;
   }
 
   .collection-table {
     font-size: 12px;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .collection-table th,
   .collection-table td {
-    padding: 8px 4px;
+    padding: 8px 6px;
+    white-space: nowrap;
+  }
+
+  .collection-table tbody tr.extra-row td {
+    padding: 20px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .collection-sheet {
+    padding: 10px;
+  }
+
+  .sheet-header {
+    padding: 10px;
+  }
+
+  .member-info-grid {
+    font-size: 12px;
+    gap: 6px 8px;
+  }
+
+  .photo-logo,
+  .member-photo img {
+    width: 80px;
+  }
+
+  .member-photo img {
+    height: 100px;
+  }
+
+  .chit-amount-section {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .bp-value {
+    font-size: 15px;
+  }
+
+  .section-header {
+    padding: 10px;
+  }
+
+  .btn-primary,
+  .btn-print,
+  .btn-whatsapp {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .add-collection-form {
+    padding: 10px;
+  }
+
+  .add-collection-form input {
+    padding: 10px;
+  }
+
+  .collection-table {
+    font-size: 11px;
+  }
+
+  .collection-table th,
+  .collection-table td {
+    padding: 6px 4px;
+  }
+
+  .whatsapp-icon {
+    font-size: 14px;
   }
 }
