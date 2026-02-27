@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './MemberForm.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function GroupForm({ onSuccess, onCancel }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,7 +13,7 @@ function GroupForm({ onSuccess, onCancel }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/groups', formData);
+      await axios.post(`${API_BASE_URL}/api/groups`, formData);
       setFormData({ name: '', description: '' });
       onSuccess();
     } catch (err) {

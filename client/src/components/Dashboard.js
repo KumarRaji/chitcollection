@@ -5,6 +5,8 @@ import MemberForm from './MemberForm';
 import CollectionSheet from './CollectionSheet';
 import GroupForm from './GroupForm';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function Dashboard() {
   const [groups, setGroups] = useState([]);
   const [members, setMembers] = useState([]);
@@ -20,7 +22,7 @@ function Dashboard() {
 
   const fetchGroups = async () => {
     try {
-      const res = await axios.get('/api/groups');
+      const res = await axios.get(`${API_BASE_URL}/api/groups`);
       setGroups(res.data);
     } catch (err) {
       console.error(err);
@@ -29,7 +31,7 @@ function Dashboard() {
 
   const fetchMembersByGroup = async (groupId) => {
     try {
-      const res = await axios.get(`/api/groups/${groupId}/members`);
+      const res = await axios.get(`${API_BASE_URL}/api/groups/${groupId}/members`);
       setMembers(res.data);
     } catch (err) {
       console.error(err);

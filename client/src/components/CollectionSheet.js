@@ -4,6 +4,8 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './CollectionSheet.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function CollectionSheet({ member }) {
   const [collections, setCollections] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -20,7 +22,7 @@ function CollectionSheet({ member }) {
 
   const fetchCollections = useCallback(async () => {
     try {
-      const res = await axios.get(`/api/collections/${member.id}`);
+      const res = await axios.get(`${API_BASE_URL}/api/collections/${member.id}`);
       setCollections(res.data);
     } catch (err) {
       console.error(err);
@@ -34,7 +36,7 @@ function CollectionSheet({ member }) {
   const handleAddCollection = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/collections', {
+      await axios.post(`${API_BASE_URL}/api/collections`, {
         member_id: member.id,
         ...newCollection,
         status: 'paid'
@@ -142,7 +144,7 @@ function CollectionSheet({ member }) {
                 <div className="photo-logo">
                   <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Logo" className="logo-image" crossOrigin="anonymous" />
                 </div>
-                <img src={`http://localhost:5000${member.photoUrl}`} alt={member.name} crossOrigin="anonymous" />
+                <img src={`${process.env.REACT_APP_API_BASE_URL}${member.photoUrl}`} alt={member.name} crossOrigin="anonymous" />
               </div>
             )}
           </div>
@@ -266,7 +268,7 @@ function CollectionSheet({ member }) {
                     </div>
                     {member.photoUrl ? (
                       <img
-                        src={`http://localhost:5000${member.photoUrl}`}
+                        src={`${process.env.REACT_APP_API_BASE_URL}${member.photoUrl}`}
                         alt={member.name}
                         className="ph-photo-image"
                         crossOrigin="anonymous"

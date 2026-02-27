@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './MemberForm.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function MemberForm({ onSuccess, selectedGroup, onCancel }) {
   const [groups, setGroups] = useState([]);
   const [formData, setFormData] = useState({
@@ -30,7 +32,7 @@ function MemberForm({ onSuccess, selectedGroup, onCancel }) {
 
   const fetchGroups = async () => {
     try {
-      const res = await axios.get('/api/groups');
+      const res = await axios.get(`${API_BASE_URL}/api/groups`);
       setGroups(res.data);
     } catch (err) {
       console.error(err);
@@ -44,7 +46,7 @@ function MemberForm({ onSuccess, selectedGroup, onCancel }) {
     if (photo) data.append('photo', photo);
 
     try {
-      await axios.post('/api/members', data);
+      await axios.post(`${API_BASE_URL}/api/members`, data);
       setFormData({
         member_number: '',
         name: '',

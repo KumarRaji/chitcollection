@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +14,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/login', { username, password });
+      const res = await axios.post(`${API_BASE_URL}/api/login`, { username, password });
       if (res.data.success) {
         navigate('/dashboard');
       }
