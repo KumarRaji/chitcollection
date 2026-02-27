@@ -17,8 +17,13 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const isAuthenticated = sessionStorage.getItem('isAuthenticated');
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
     fetchGroups();
-  }, []);
+  }, [navigate]);
 
   const fetchGroups = async () => {
     try {
@@ -58,6 +63,7 @@ function Dashboard() {
   };
 
   const handleLogout = () => {
+    sessionStorage.removeItem('isAuthenticated');
     navigate('/login');
   };
 

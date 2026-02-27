@@ -16,6 +16,7 @@ function Login() {
     try {
       const res = await axios.post(`${API_BASE_URL}/api/login`, { username, password });
       if (res.data.success) {
+        sessionStorage.setItem('isAuthenticated', 'true');
         navigate('/dashboard');
       }
     } catch (err) {
