@@ -84,3 +84,48 @@
   padding: 50px;
   font-size: 18px;
 }
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .header > div {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .header > div button {
+    flex: 1;
+    margin-right: 0 !important;
+  }
+
+  .content {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    max-height: 300px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .member-item,
+  .group-item {
+    padding: 12px;
+    font-size: 14px;
+  }
+}

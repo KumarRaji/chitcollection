@@ -244,3 +244,62 @@
 .collection-table tbody tr.extra-row td {
   padding: 25px 12px;
 }
+
+@media (max-width: 768px) {
+  .collection-sheet {
+    padding: 15px;
+  }
+
+  .header-top {
+    flex-direction: column;
+  }
+
+  .member-info-grid {
+    grid-template-columns: auto 1fr;
+    gap: 8px 10px;
+    font-size: 14px;
+  }
+
+  .member-photo {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .photo-logo,
+  .member-photo img {
+    width: 100px;
+  }
+
+  .member-photo img {
+    height: 125px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-print,
+  .btn-whatsapp {
+    width: 100%;
+  }
+
+  .add-collection-form {
+    flex-direction: column;
+  }
+
+  .collection-table {
+    font-size: 12px;
+  }
+
+  .collection-table th,
+  .collection-table td {
+    padding: 8px 4px;
+  }
+}

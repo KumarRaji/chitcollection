@@ -77,3 +77,25 @@
   min-height: 80px;
   resize: vertical;
 }
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .member-form {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .member-form h2 {
+    font-size: 18px;
+  }
+
+  .modal-close {
+    font-size: 24px;
+  }
+}
