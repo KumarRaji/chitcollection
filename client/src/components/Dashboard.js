@@ -116,7 +116,7 @@ function Dashboard() {
           )}
         </div>
 
-        <div className="main-content">
+        <div className={`main-content ${selectedMember ? '' : 'main-content--empty'}`}>
           {selectedMember ? (
             <CollectionSheet member={selectedMember} />
           ) : (
