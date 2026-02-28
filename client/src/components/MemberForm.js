@@ -131,6 +131,7 @@ function MemberForm({ onSuccess, selectedGroup, onCancel }) {
           placeholder="ஆரம்ப தேதி"
           value={formData.start_date}
           onChange={(e) => setFormData({...formData, start_date: e.target.value})}
+          onFocus={(e) => e.target.showPicker?.()}
           required
         />
         <input
@@ -138,6 +139,7 @@ function MemberForm({ onSuccess, selectedGroup, onCancel }) {
           placeholder="முடிவு தேதி"
           value={formData.due_date}
           onChange={(e) => setFormData({...formData, due_date: e.target.value})}
+          onFocus={(e) => e.target.showPicker?.()}
           required
         />
         <input
