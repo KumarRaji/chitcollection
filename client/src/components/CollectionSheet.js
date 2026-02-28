@@ -84,14 +84,23 @@ function CollectionSheet({ member }) {
       const pdfBlob = pdf.output('blob');
       const file = new File([pdfBlob], `${member.name}_collection_sheet.pdf`, { type: 'application/pdf' });
 
-      if (navigator.share && navigator.canShare({ files: [file] })) {
+      const canShareFiles =
+        typeof navigator !== 'undefined' &&
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] });
+
+      if (canShareFiles) {
         await navigator.share({
           files: [file],
           title: `Collection Sheet - ${member.name}`,
           text: `Amount Paid for ${member.name}`
         });
       } else {
+        // Fallback: browsers that don't support file-sharing will only open WhatsApp without an attachment.
+        // We download the PDF and open WhatsApp chat, but attaching the file still has to be done manually.
         pdf.save(`${member.name}_collection_sheet.pdf`);
+        alert('Your browser cannot attach the PDF directly to WhatsApp. The report has been downloaded; please attach it manually in WhatsApp.');
         window.open(`https://wa.me/91${member.phone}`, '_blank');
       }
     } catch (err) {
