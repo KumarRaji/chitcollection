@@ -3,16 +3,35 @@
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
 }
 
 .print-sheet {
   display: none;
 }
 
+/* Show print-sheet off-screen for WhatsApp PDF capture so user never sees it */
+body.whatsapp-pdf-capture .print-sheet {
+  display: block !important;
+  position: fixed !important;
+  left: -9999px;
+  top: 0;
+  width: 210mm;
+  z-index: 99999;
+  background: white;
+}
+
 .print-sheet__inner {
   background: #fff;
   border: 2px solid #333;
   padding: 0;
+}
+
+.print-table-wrap {
+  /* used in print to grow and fill page */
 }
 
 .print-title {
@@ -113,11 +132,22 @@
   padding: 18px 6px;
 }
 
+.print-table tbody tr.pt-extra-row:last-child td {
+  border-bottom: 2px solid #333;
+}
+
 .sheet-header {
   border: 2px solid #333;
   border-bottom: none;
   padding: 15px;
   background: #fef9e7;
+  flex-shrink: 0;
+}
+
+.collection-table-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
 }
 
 .header-top {
@@ -222,6 +252,19 @@
 
 .collections-section {
   margin-top: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.collections-section .section-header {
+  flex-shrink: 0;
+}
+
+.collections-section .add-collection-form {
+  flex-shrink: 0;
 }
 
 .section-header {
@@ -307,6 +350,58 @@
     top: 0;
     width: 100%;
     font-family: "Noto Sans Tamil", "Latha", "Vijaya", Arial, sans-serif;
+  }
+
+  .print-sheet__inner {
+    display: block;
+  }
+
+  .print-title {
+    font-size: 20px;
+    padding: 12px 0;
+    flex-shrink: 0;
+  }
+
+  .print-header-table td {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .print-header-table .ph-photo {
+    width: 165px;
+  }
+
+  .ph-logo {
+    height: 52px;
+  }
+
+  .ph-logo-image {
+    max-width: 150px;
+    max-height: 46px;
+  }
+
+  .ph-photo-image,
+  .ph-photo-placeholder {
+    width: 165px;
+    height: 200px;
+  }
+
+  .print-table-wrap {
+    /* content ends at row 14, no stretch to page end */
+  }
+
+  .print-table tbody tr.pt-extra-row td {
+    padding: 12px 10px;
+  }
+
+  .print-table tbody tr.pt-extra-row:last-child td {
+    border-bottom: 2px solid #333;
+  }
+
+  .print-table th,
+  .print-table td {
+    font-size: 14px;
+    padding: 12px 10px;
   }
   
   .section-header {
@@ -447,15 +542,19 @@
 
   .collection-table {
     font-size: 13px;
-    display: block;
-    overflow-x: auto;
+    display: table;
+    width: 100%;
+  }
+
+  .collection-table-wrap {
     -webkit-overflow-scrolling: touch;
   }
 
   .collection-table th,
   .collection-table td {
     padding: 10px 8px;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
   }
 
   .collection-table tbody tr.extra-row td {

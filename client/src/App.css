@@ -15,7 +15,7 @@
 }
 
 .header h1 {
-  font-size: 22px;
+  font-size: 28px;
   margin: 0;
 }
 
@@ -38,6 +38,7 @@
 .content {
   display: flex;
   flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -87,8 +88,10 @@
 
 .main-content {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   padding: 20px;
 }
 
@@ -97,6 +100,10 @@
   color: #999;
   padding: 50px 20px;
   font-size: 18px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 900px) {
@@ -105,7 +112,7 @@
   }
 
   .header h1 {
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .header > div {
@@ -127,7 +134,8 @@
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #ddd;
-    max-height: 45vh;
+    max-height: 38vh;
+    min-height: 0;
     padding: 15px;
   }
 
@@ -139,6 +147,7 @@
 
   .main-content {
     padding: 15px;
+    min-height: 55vh;
   }
 
   .member-item,
@@ -161,7 +170,7 @@
   }
 
   .header h1 {
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
   }
 
@@ -179,7 +188,8 @@
 
   .sidebar {
     padding: 12px;
-    max-height: 40vh;
+    max-height: 35vh;
+    min-height: 0;
   }
 
   .sidebar h2,
@@ -189,6 +199,7 @@
 
   .main-content {
     padding: 12px;
+    min-height: 50vh;
   }
 
   .member-item,

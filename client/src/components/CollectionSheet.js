@@ -63,22 +63,27 @@ function CollectionSheet({ member }) {
 
   const handleWhatsAppShare = async () => {
     try {
-      const element = document.querySelector('.collection-sheet');
-      const canvas = await html2canvas(element, { 
+      // Use print-sheet off-screen so PDF has no "Collection Records" / buttons; user never sees it
+      document.body.classList.add('whatsapp-pdf-capture');
+      await new Promise((r) => setTimeout(r, 50));
+      const element = document.querySelector('.print-sheet .print-sheet__inner');
+      const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
         allowTaint: true,
         logging: false
       });
+      document.body.classList.remove('whatsapp-pdf-capture');
+
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      
+
       const pdfBlob = pdf.output('blob');
       const file = new File([pdfBlob], `${member.name}_collection_sheet.pdf`, { type: 'application/pdf' });
-      
+
       if (navigator.share && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
@@ -90,6 +95,7 @@ function CollectionSheet({ member }) {
         window.open(`https://wa.me/91${member.phone}`, '_blank');
       }
     } catch (err) {
+      document.body.classList.remove('whatsapp-pdf-capture');
       console.error('Error sharing:', err);
       alert('Error generating PDF');
     }
@@ -197,10 +203,11 @@ function CollectionSheet({ member }) {
             </form>
           )}
 
-          <table className="collection-table">
-            <thead>
-              <tr>
-                <th>எண்</th>
+          <div className="collection-table-wrap">
+            <table className="collection-table">
+              <thead>
+                <tr>
+                  <th>எண்</th>
                 <th>தவணை தேதி</th>
                 <th>வரவு தேதி</th>
                 <th>வரவு</th>
@@ -241,7 +248,8 @@ function CollectionSheet({ member }) {
                 <td></td>
               </tr>
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -306,8 +314,9 @@ function CollectionSheet({ member }) {
             </table>
           </div>
 
-          <table className="print-table">
-            <thead>
+          <div className="print-table-wrap">
+            <table className="print-table">
+              <thead>
               <tr>
                 <th className="pt-sno">எண்</th>
                 <th>தவணை தேதி</th>
@@ -336,21 +345,22 @@ function CollectionSheet({ member }) {
                 </tr>
               ))}
               <tr className="pt-extra-row">
+                <td className="pt-sno">13</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td className="pt-amt"></td>
                 <td></td>
               </tr>
               <tr className="pt-extra-row">
+                <td className="pt-sno">14</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td className="pt-amt"></td>
                 <td></td>
               </tr>
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </div>
     </>
