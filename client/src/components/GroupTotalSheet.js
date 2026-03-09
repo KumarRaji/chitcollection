@@ -161,8 +161,8 @@ function GroupTotalSheet({ group, members }) {
       <div className="gts-print-area">
         <div className="gts-paper-head">
           <div className="gts-paper-title">
-            <div className="gts-paper-title-line">ஸ்ரீ ஐயப்பராஜன் துணை</div>
-            <div className="gts-paper-title-line">ஸ்ரீ மேகேஸ்வரி அம்மன் துணை</div>
+            <div className="gts-paper-title-line">ஸ்ரீ ஐய்யனாரப்பன் துணை</div>
+            <div className="gts-paper-title-line">ஸ்ரீ மேச்சேரி அம்மன் துணை</div>
           </div>
 
           <div className="gts-paper-topmeta">
@@ -222,7 +222,18 @@ function GroupTotalSheet({ group, members }) {
                 <td className="gts-date">
                   {lastDateByMemberId[m?.id] ? new Date(lastDateByMemberId[m?.id]).toLocaleDateString() : ''}
                 </td>
-                <td className="gts-phone">{m?.phone ?? ''}</td>
+                <td className="gts-phone">
+                  {m?.phone ?? ''}
+                  {m?.phone && (
+                    <a 
+                      href={`tel:${m.phone}`}
+                      className="whatsapp-icon"
+                      title="Call"
+                    >
+                      📲
+                    </a>
+                  )}
+                </td>
               </tr>
             ))}
 
