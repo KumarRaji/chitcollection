@@ -193,7 +193,7 @@ function GroupTotalSheet({ group, members }) {
           <table className="gts-table">
           <thead>
             <tr>
-              <th className="gts-sno">வரி எண்</th>
+              <th className="gts-sno">வரிசை எண்</th>
               <th className="gts-name">பெயர் விவரம்</th>
               <th className="gts-amt">வரவு</th>
               <th className="gts-amt">பாக்கி</th>
@@ -206,8 +206,7 @@ function GroupTotalSheet({ group, members }) {
               <tr key={m.id ?? `${m.name}-${idx}`}>
                 <td className="gts-sno">{idx + 1}</td>
                 <td className="gts-name">
-                  <div className="gts-name-main">{m?.name || ''}</div>
-                  <div className="gts-name-sub">{m?.memberNumber ?? m?.member_number ?? ''}</div>
+                  {m?.name || ''}
                 </td>
                 <td className="gts-amt">
                   {formatRupeesOrBlank(paidByMemberId[m?.id])}
