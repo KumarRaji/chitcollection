@@ -236,7 +236,7 @@
 
   body.print-group-total .gts-table th,
   body.print-group-total .gts-table td {
-    border-color: #333;
+    border: 1px solid #000;
   }
 
   body.print-group-total .gts-table {
@@ -257,6 +257,10 @@
 
   body.print-group-total .gts-total-amt {
     font-size: 18px;
+  }
+
+  body.print-group-total .gts-table tfoot {
+    display: none;
   }
 }
 
