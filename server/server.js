@@ -69,6 +69,40 @@ app.get('/api/groups/:id/members', async (req, res) => {
   }
 });
 
+// Get collection totals (வரவு) per member in a group
+app.get('/api/groups/:id/collection-totals', async (req, res) => {
+  try {
+    const groupId = parseInt(req.params.id);
+    const members = await prisma.member.findMany({
+      where: { groupId },
+      select: { id: true }
+    });
+
+    const memberIds = members.map((m) => m.id);
+    if (memberIds.length === 0) {
+      res.json([]);
+      return;
+    }
+
+    const totals = await prisma.collection.groupBy({
+      by: ['memberId'],
+      where: { memberId: { in: memberIds } },
+      _sum: { amount: true },
+      _max: { collectionDate: true }
+    });
+
+    res.json(
+      totals.map((t) => ({
+        memberId: t.memberId,
+        totalPaid: t._sum.amount ?? 0,
+        lastDate: t._max.collectionDate
+      }))
+    );
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Get all members
 app.get('/api/members', async (req, res) => {
   try {

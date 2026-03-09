@@ -312,11 +312,11 @@ body.whatsapp-pdf-capture .print-sheet {
 }
 
 @media print {
-  .btn-primary,
-  .btn-print,
-  .btn-whatsapp,
-  .add-collection-form,
-  .section-header h3 {
+  body.print-member-sheet .btn-primary,
+  body.print-member-sheet .btn-print,
+  body.print-member-sheet .btn-whatsapp,
+  body.print-member-sheet .add-collection-form,
+  body.print-member-sheet .section-header h3 {
     display: none !important;
   }
   
@@ -325,25 +325,25 @@ body.whatsapp-pdf-capture .print-sheet {
     margin: 10mm;
   }
 
-  body {
+  body.print-member-sheet {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  body * {
+  body.print-member-sheet * {
     visibility: hidden;
   }
 
-  .collection-sheet {
+  body.print-member-sheet .collection-sheet {
     display: none !important;
   }
 
-  .print-sheet,
-  .print-sheet * {
+  body.print-member-sheet .print-sheet,
+  body.print-member-sheet .print-sheet * {
     visibility: visible;
   }
 
-  .print-sheet {
+  body.print-member-sheet .print-sheet {
     display: block;
     position: absolute;
     left: 0;
@@ -352,70 +352,70 @@ body.whatsapp-pdf-capture .print-sheet {
     font-family: "Noto Sans Tamil", "Latha", "Vijaya", Arial, sans-serif;
   }
 
-  .print-sheet__inner {
+  body.print-member-sheet .print-sheet__inner {
     display: block;
   }
 
-  .print-title {
+  body.print-member-sheet .print-title {
     font-size: 20px;
     padding: 12px 0;
     flex-shrink: 0;
   }
 
-  .print-header-table td {
+  body.print-member-sheet .print-header-table td {
     font-size: 14px;
     padding: 10px 12px;
   }
 
-  .print-header-table .ph-photo {
+  body.print-member-sheet .print-header-table .ph-photo {
     width: 165px;
   }
 
-  .ph-logo {
+  body.print-member-sheet .ph-logo {
     height: 52px;
   }
 
-  .ph-logo-image {
+  body.print-member-sheet .ph-logo-image {
     max-width: 150px;
     max-height: 46px;
   }
 
-  .ph-photo-image,
-  .ph-photo-placeholder {
+  body.print-member-sheet .ph-photo-image,
+  body.print-member-sheet .ph-photo-placeholder {
     width: 165px;
     height: 200px;
   }
 
-  .print-table-wrap {
+  body.print-member-sheet .print-table-wrap {
     /* content ends at row 14, no stretch to page end */
   }
 
-  .print-table tbody tr.pt-extra-row td {
+  body.print-member-sheet .print-table tbody tr.pt-extra-row td {
     padding: 12px 10px;
   }
 
-  .print-table tbody tr.pt-extra-row:last-child td {
+  body.print-member-sheet .print-table tbody tr.pt-extra-row:last-child td {
     border-bottom: 2px solid #333;
   }
 
-  .print-table th,
-  .print-table td {
+  body.print-member-sheet .print-table th,
+  body.print-member-sheet .print-table td {
     font-size: 14px;
     padding: 12px 10px;
   }
   
-  .section-header {
+  body.print-member-sheet .section-header {
     margin-bottom: 0;
     padding: 0;
     border: none;
     background: none;
   }
   
-  .action-buttons {
+  body.print-member-sheet .action-buttons {
     display: none !important;
   }
   
-  .collections-section {
+  body.print-member-sheet .collections-section {
     margin-top: 0;
   }
 }

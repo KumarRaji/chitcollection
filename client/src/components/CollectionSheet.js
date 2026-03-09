@@ -17,7 +17,16 @@ function CollectionSheet({ member }) {
   });
 
   const handlePrint = () => {
-    window.print();
+    try {
+      document.body.classList.add('print-member-sheet');
+      const cleanup = () => document.body.classList.remove('print-member-sheet');
+      window.addEventListener('afterprint', cleanup, { once: true });
+      window.print();
+      // Fallback cleanup in case afterprint doesn't fire
+      setTimeout(cleanup, 500);
+    } catch {
+      window.print();
+    }
   };
 
   const fetchCollections = useCallback(async () => {

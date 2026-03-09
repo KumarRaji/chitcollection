@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import MemberForm from './MemberForm';
 import CollectionSheet from './CollectionSheet';
 import GroupForm from './GroupForm';
+import GroupTotalSheet from './GroupTotalSheet';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -12,6 +13,7 @@ function Dashboard() {
   const [members, setMembers] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [selectedMember, setSelectedMember] = useState(null);
+  const [activeView, setActiveView] = useState('empty'); // 'empty' | 'member' | 'groupTotal'
   const [showMemberForm, setShowMemberForm] = useState(false);
   const [showGroupForm, setShowGroupForm] = useState(false);
   const navigate = useNavigate();
@@ -46,6 +48,7 @@ function Dashboard() {
   const handleGroupSelect = (group) => {
     setSelectedGroup(group);
     setSelectedMember(null);
+    setActiveView('empty');
     fetchMembersByGroup(group.id);
   };
 
@@ -102,11 +105,24 @@ function Dashboard() {
           {selectedGroup && (
             <>
               <h3 style={{marginTop: '20px', marginBottom: '15px'}}>உறுப்பினர்கள்</h3>
+              <div
+                className={`member-item ${activeView === 'groupTotal' ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedMember(null);
+                  setActiveView('groupTotal');
+                }}
+              >
+                <strong>Total உறுப்பினர்கள்</strong>
+                <small>{members.length} உறுப்பினர்கள்</small>
+              </div>
               {members.map(member => (
                 <div
                   key={member.id}
                   className={`member-item ${selectedMember?.id === member.id ? 'active' : ''}`}
-                  onClick={() => setSelectedMember(member)}
+                  onClick={() => {
+                    setSelectedMember(member);
+                    setActiveView('member');
+                  }}
                 >
                   <strong>{member.name}</strong>
                   <small>{member.memberNumber}</small>
@@ -116,9 +132,11 @@ function Dashboard() {
           )}
         </div>
 
-        <div className={`main-content ${selectedMember ? '' : 'main-content--empty'}`}>
-          {selectedMember ? (
+        <div className={`main-content ${activeView === 'empty' ? 'main-content--empty' : ''}`}>
+          {activeView === 'member' && selectedMember ? (
             <CollectionSheet member={selectedMember} />
+          ) : activeView === 'groupTotal' && selectedGroup ? (
+            <GroupTotalSheet group={selectedGroup} members={members} />
           ) : (
             <div className="placeholder">Select a group and member to view collection sheet</div>
           )}

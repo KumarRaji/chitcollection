@@ -1,0 +1,262 @@
+.group-total-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.gts-print-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.gts-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gts-title__main {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.gts-title__sub {
+  margin-top: 6px;
+  color: #5b6775;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gts-dot {
+  opacity: 0.6;
+}
+
+.gts-paper-head {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.gts-paper-title {
+  text-align: center;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.gts-paper-title-line {
+  line-height: 1.2;
+}
+
+.gts-paper-topmeta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 18px;
+}
+
+.gts-paper-topmeta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gts-paper-topmeta-col--right {
+  align-items: flex-end;
+}
+
+.gts-paper-field {
+  display: grid;
+  grid-template-columns: auto 180px;
+  align-items: center;
+  gap: 10px;
+}
+
+.gts-paper-label {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.gts-paper-input {
+  width: 180px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  min-height: 34px;
+}
+
+.gts-table-wrap {
+  overflow: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.gts-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 980px;
+}
+
+.gts-table th,
+.gts-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.gts-table thead th {
+  background: #f8f9fa;
+  font-weight: 700;
+}
+
+.gts-sno {
+  width: 60px;
+  text-align: center;
+}
+
+.gts-name {
+  width: 360px;
+}
+
+.gts-name-main {
+  font-weight: 700;
+}
+
+.gts-name-sub {
+  margin-top: 2px;
+  color: #6b7785;
+  font-size: 12px;
+}
+
+.gts-amt {
+  width: 140px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.gts-date {
+  width: 120px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.gts-phone {
+  width: 160px;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
+.gts-paper-footer {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.gts-paper-footer-left {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.gts-total-label {
+  text-align: right;
+  font-weight: 700;
+  background: #fff3cd;
+  border-top: 2px solid #333;
+}
+
+.gts-total-amt {
+  font-weight: 800;
+  background: #fff3cd;
+  border-top: 2px solid #333;
+  font-size: 18px;
+  color: #000;
+}
+
+@media print {
+  .gts-header button {
+    display: none !important;
+  }
+
+  .gts-table-wrap {
+    border: none;
+  }
+
+  .gts-table {
+    min-width: 0;
+  }
+}
+
+@media print {
+  body.print-group-total * {
+    visibility: hidden;
+  }
+
+  body.print-group-total .gts-print-area,
+  body.print-group-total .gts-print-area * {
+    visibility: visible;
+  }
+
+  body.print-group-total .gts-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+  }
+
+  body.print-group-total .gts-table-wrap {
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+  }
+
+  body.print-group-total .gts-paper-head,
+  body.print-group-total .gts-paper-footer {
+    border: 1px solid #333;
+    border-radius: 0;
+  }
+
+  body.print-group-total .gts-paper-input {
+    border: none;
+    border-bottom: 1px solid #333;
+    border-radius: 0;
+    padding: 2px 2px;
+    min-height: 0;
+  }
+
+  body.print-group-total .gts-table th,
+  body.print-group-total .gts-table td {
+    border-color: #333;
+  }
+
+  body.print-group-total .gts-table {
+    min-width: 0;
+  }
+
+  body.print-group-total .gts-table th,
+  body.print-group-total .gts-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  body.print-group-total .gts-total-label,
+  body.print-group-total .gts-total-amt {
+    background: #fff3cd !important;
+    border-top: 2px solid #000 !important;
+  }
+
+  body.print-group-total .gts-total-amt {
+    font-size: 18px;
+  }
+}
+
