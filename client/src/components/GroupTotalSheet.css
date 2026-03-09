@@ -76,7 +76,7 @@
   display: grid;
   grid-template-columns: auto 180px;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .gts-paper-label {
